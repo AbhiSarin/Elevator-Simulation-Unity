@@ -31,14 +31,14 @@ public class ElevatorDoor : MonoBehaviour
     //  Called via Animation Events
     public void OnDoorOpened()
     {
-        Debug.Log("Door Opened Event Triggered");
+       // Debug.Log("Door Opened Event Triggered");
         isOpenComplete = true;
     }
 
     //  Called via Animation Events
     public void OnDoorClosed()
     {
-        Debug.Log("Door Clossed Event Triggered");
+       // Debug.Log("Door Clossed Event Triggered");
         isCloseComplete = true;
     }
 }
