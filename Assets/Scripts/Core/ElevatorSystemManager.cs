@@ -22,6 +22,16 @@ public class ElevatorSystemManager : MonoBehaviour
         }
     }
 
+    public void CompleteRequest(int floor)
+    {
+        if (activeRequests.Contains(floor))
+        {
+            //  Removes request out from the queue.
+            activeRequests.Remove(floor);
+        }
+    } 
+    
+
     ElevatorController FindBestElevator(int floor, Direction dir)
     {
         ElevatorController best = null;

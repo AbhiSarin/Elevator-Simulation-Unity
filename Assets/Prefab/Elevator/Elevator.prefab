@@ -140,3 +140,4 @@ MonoBehaviour:
   ElevatorID: 0
   moveSpeed: 1
   door: {fileID: 7927659918404439426}
+  systemManager: {fileID: 0}

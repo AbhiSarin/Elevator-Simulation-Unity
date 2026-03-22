@@ -10,6 +10,7 @@ public class ElevatorUI : MonoBehaviour
 
     void Update()
     {
+        // Updates Elevatopr UI to represent state and floor
         floorText.text = "Floor: " + elevator.CurrentFloor;
         stateText.text = elevator.State.ToString();
     }

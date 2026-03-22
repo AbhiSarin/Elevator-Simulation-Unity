@@ -35,6 +35,7 @@ public class ElevatorDoor : MonoBehaviour
         isOpenComplete = true;
     }
 
+    //  Called via Animation Events
     public void OnDoorClosed()
     {
         Debug.Log("Door Clossed Event Triggered");

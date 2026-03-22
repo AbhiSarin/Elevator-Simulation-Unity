@@ -21,6 +21,8 @@ public class ElevatorController : MonoBehaviour
 
     public ElevatorDoor door;
 
+    public ElevatorSystemManager systemManager; 
+
     #region Public API
 
     public void AddRequest(int floor)
@@ -59,16 +61,23 @@ public class ElevatorController : MonoBehaviour
         while (requestQueue.Count > 0)
         {
             int targetFloor = requestQueue[0];
+            if (targetFloor == CurrentFloor)
+            {
+                yield return door.OpenDoor();
+                systemManager.CompleteRequest(targetFloor);
+                continue;
+            }
             requestQueue.RemoveAt(0);
             requestSet.Remove(targetFloor);
 
-            //  STEP 1: CLOSE DOOR BEFORE MOVING
+            //  CLOSE DOOR BEFORE MOVING
             yield return door.CloseDoor();
 
-            //  STEP 2: MOVE
+            //  MOVE
             yield return MoveToFloor(targetFloor);
 
-            //  STEP 3: OPEN DOOR AFTER ARRIVAL
+            //   OPEN DOOR AFTER ARRIVAL
+            systemManager.CompleteRequest(targetFloor);
             yield return door.OpenDoor();
 
             // Optional wait at floor
