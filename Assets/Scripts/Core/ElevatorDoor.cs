@@ -3,20 +3,41 @@ using UnityEngine;
 
 public class ElevatorDoor : MonoBehaviour
 {
-    public float openTime = 1f;
-    public float waitTime = 1f;
+    public Animator animator;
 
-    public IEnumerator OpenClose()
+    private bool isOpenComplete;
+    private bool isCloseComplete;
+
+    public IEnumerator OpenDoor()
     {
-        // TODO: Add animation here
-        Debug.Log("Door Opening");
+        isOpenComplete = false;
 
-        yield return new WaitForSeconds(openTime);
+        animator.ResetTrigger("Close");
+        animator.SetTrigger("Open");
 
-        Debug.Log("Door Waiting");
-        yield return new WaitForSeconds(waitTime);
+        yield return new WaitUntil(() => isOpenComplete);
+    }
 
-        Debug.Log("Door Closing");
-        yield return new WaitForSeconds(openTime);
+    public IEnumerator CloseDoor()
+    {
+        isCloseComplete = false;
+
+        animator.ResetTrigger("Open");
+        animator.SetTrigger("Close");
+
+        yield return new WaitUntil(() => isCloseComplete);
+    }
+
+    //  Called via Animation Events
+    public void OnDoorOpened()
+    {
+        Debug.Log("Door Opened Event Triggered");
+        isOpenComplete = true;
+    }
+
+    public void OnDoorClosed()
+    {
+        Debug.Log("Door Clossed Event Triggered");
+        isCloseComplete = true;
     }
 }

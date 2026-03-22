@@ -62,8 +62,17 @@ public class ElevatorController : MonoBehaviour
             requestQueue.RemoveAt(0);
             requestSet.Remove(targetFloor);
 
+            //  STEP 1: CLOSE DOOR BEFORE MOVING
+            yield return door.CloseDoor();
+
+            //  STEP 2: MOVE
             yield return MoveToFloor(targetFloor);
-            yield return door.OpenClose();
+
+            //  STEP 3: OPEN DOOR AFTER ARRIVAL
+            yield return door.OpenDoor();
+
+            // Optional wait at floor
+            yield return new WaitForSeconds(1f);
         }
 
         State = ElevatorState.Idle;

@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ElevatorUI : MonoBehaviour
 {
     public ElevatorController elevator;
-    public Text floorText;
-    public Text stateText;
+    public TextMeshProUGUI floorText;
+    public TextMeshProUGUI stateText;
 
     void Update()
     {
