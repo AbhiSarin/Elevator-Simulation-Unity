@@ -18,7 +18,7 @@ This project simulates a building with multiple elevators responding to floor re
 
 ## 🛗 Features
 
-* 3 fully functional elevators
+* 4 fully functional elevators
 * 5 floors (Ground to 4th floor)
 * Floor call buttons (Up / Down)
 * Intelligent elevator dispatch system
